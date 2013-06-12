@@ -1,8 +1,0 @@
-{
-	"header": {
-		"en": "Ldap and Yubikey authentication administration"
-	},
-	"intro": {
-		"en": "You can modify the user's setting of the second factor of authentication."
-	}
-}
