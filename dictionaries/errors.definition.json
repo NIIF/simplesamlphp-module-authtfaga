@@ -1,0 +1,8 @@
+{
+	"title_WRONGOTP": {
+		"en": "Invalid verification code!"
+	},
+	"descr_WRONGOTP": {
+		"en": "The Google Authenticator based one time password validation failed. Try again, or contact the administrators!"
+	}
+}

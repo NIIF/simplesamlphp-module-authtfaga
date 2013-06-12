@@ -1,0 +1,34 @@
+<?php
+$this->data['header'] = $this->t('{ldapandyubi:settings:header}');
+$this->data['jquery'] = '1.6';
+$this->data['head'] = '<link rel="stylesheet" type="text/css" href="/'. $this->data['baseurlpath'] .'module.php/ldapandyubi/resources/ldapandyubi.css" />' ;
+$this->data['hideLanguageBar'] = TRUE;
+
+$potps = $this->data['potps'];
+
+$this->includeAtTemplateBase('includes/header.php');
+?>
+
+<div class="potps">
+<table>
+<?php for ($i=0;$i<12;$i++) : ?>
+<? echo $i%3 == 0?"<tr>":"" ?>
+<td><?= $potps[$i][0]>0?number_format($potps[$i][0], 0, ',', ' '):"-"?></td>
+<? echo ($i+1)%3 == 0?"</tr>":"" ?>
+<?php endfor ?>
+</table>
+</div><!-- potps -->
+
+Nyomtatva:
+<?php
+echo date('Y. m. d. H:i');
+?>
+<br>
+<input type="submit" id="print" value="Nyomtatás">
+<script>
+$(document).ready(function () {
+  $("#print").click( function () {
+    window.print();
+  });
+});
+</script>

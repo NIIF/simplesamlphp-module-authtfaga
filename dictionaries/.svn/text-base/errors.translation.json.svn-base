@@ -1,0 +1,60 @@
+{
+	"title_WRONGUSERPASS": {
+		"no": "Feil brukernavn og passord",
+		"nn": "Feil brukarnamn eller passord",
+		"sv": "Felaktig anv\u00e4ndaridentitet eller l\u00f6senord",
+		"es": "Nombre de usuario o contrase\u00f1a incorrectos",
+		"fr": "Nom d'utilisateur ou mot de passe incorrect",
+		"de": "Nutzername oder Passwort falsch.",
+		"nl": "Incorrecte gebruikersnaam of wachtwoord",
+		"sl": "Napa\u010dno uporabni\u0161ko ime ali geslo",
+		"da": "Forkert brugernavn eller kodeord",
+		"hr": "Neispravna korisni\u010dka oznaka ili zaporka",
+		"hu": "Hib\u00e1s felhaszn\u00e1l\u00f3n\u00e9v vagy jelsz\u00f3",
+		"fi": "Virheellinen k\u00e4ytt\u00e4j\u00e4tunnus tai salasana",
+		"pt-BR": "Nome de usu\u00e1rio ou senha incorreto.",
+		"pt": "Utilizador ou senha incorrecto",
+		"pl": "Bl\u0119dna nazwa u\u017cytkownika lub has\u0142o",
+		"cs": "\u0160patn\u00e9 jm\u00e9no a heslo.",
+		"tr": "Ge\u00e7ersiz kullan\u0131c\u0131 ad\u0131 yada \u015fifre",
+		"lt": "Neteisingas prisijungimo vardas arba slapta\u017eodis",
+		"it": "Nome utente o password non corretti",
+		"ja": "\u30e6\u30fc\u30b6\u30fc\u540d\u304b\u30d1\u30b9\u30ef\u30fc\u30c9\u304c\u9593\u9055\u3063\u3066\u3044\u307e\u3059"
+	},
+	"descr_WRONGUSERPASS": {
+		"no": "Enten var brukernavnet, eller kombinasjonen med brukernavn og passord feil. Sjekk brukernavn og passord og pr\u00f8v igjen.",
+		"nn": "Fann ingen brukar med det brukarnamnet du oppgav, eller passordet var feil.  Sjekk brukarnamn og pr\u00f8v igjen.",
+		"sv": "Antingen finns det ingen anv\u00e4ndare med angiven anv\u00e4ndaridentitet eller s\u00e5 har du angivit fel l\u00f6senord. F\u00f6rs\u00f6k igen.",
+		"es": "No existe un usuario con el identificador indicado, o la contrase\u00f1a indicada es incorrecta. Por favor revise el identificador de usuario e int\u00e9ntelo de nuevo.",
+		"fr": "Utilisateur inexistant, ou mot de passe incorrect. V\u00e9rifiez le nom d'utilisateur, et r\u00e9-essayez.",
+		"de": "Entweder es konnte kein Nutzer mit dem angegebenen Nutzernamen gefunden werden oder das Passwort ist falsch. \u00dcberpr\u00fcfen sie die Zugangsdaten und probieren sie es nochmal.",
+		"nl": "De opgegeven gebruikersnaam bestaat niet, of het wachtwoord is ongeldig. Verifieer de gebruikersnaam en probeer het nogmaals.",
+		"sl": "Uporabnika s tem uporabni\u0161kim imenom ni bilo mogo\u010de najti ali pa je vpisano geslo napa\u010dno. Preverite svoje uporabni\u0161ko ime in poskusite znova.",
+		"da": "Enten kunne brugeren ikke findes eller ogs\u00e5 var kodeordet forkert. Pr\u00f8v igen.",
+		"hr": "Korisnik s navedenom korisni\u010dkom oznakom ne mo\u017ee biti prona\u0111en ili je zaporka koju ste unijeli neispravna. Molimo provjerite korisni\u010dku oznaku i poku\u0161ajte ponovo.",
+		"hu": "Nem l\u00e9tezik ilyen felhaszn\u00e1l\u00f3 vagy a jelsz\u00f3 hib\u00e1s. K\u00e9rj\u00fck, pr\u00f3b\u00e1lja \u00fajra!",
+		"pt-BR": "Ou nenhum usu\u00e1rio com o nome de usu\u00e1rio pode ser encontrado, ou a senha que voc\u00ea digitou est\u00e1 incorreta. Verifique o nome de usu\u00e1rio e tente novamente.",
+		"pt": "O utilizador ou senha fornecidos s\u00e3o incorrectos. Por favor tente de novo.",
+		"cs": "U\u017eivatel bu\u010f nebyl nalezen, nebo jste zadal \u0161patn\u00e9 heslo. Pros\u00edm zkontrolujte login a zkuste se p\u0159ihl\u00e1sit znovu.",
+		"tr": "Ya bu kullan\u0131c\u0131 ad\u0131nda bir kullan\u0131c\u0131 bulunamad\u0131, yada \u015fifreniz yanl\u0131\u015f. L\u00fctfen kullan\u0131c\u0131 ad\u0131n\u0131 kontrol edin ve yeniden deneyin.",
+		"lt": "Vartotojas su tokiu prisijungimo vardu nerastas, arba neteisingai \u012fved\u0117te slapta\u017eod\u012f. Pasitikrinkite prisijungimo vard\u0105 ir bandykite dar kart\u0105.",
+		"it": "L'utente fornito non \u00e8 stato trovato, oppure la password fornita era sbagliata. Si prega di verificare il nome utente e provare di nuovo"
+	},
+        "title_HAVETOUSEOTP": {
+                "hu": "Nincs két faktor!"
+        },
+        "descr_HAVETOUSEOTP": {
+                "hu": "A beállításaidnál megkövetelted a 2 faktoros azonosítást. Használnod kell a yubikey-t!"
+        },
+        "title_HAVENOTTOUSEOTP": {
+                "hu": "Két faktoros azonosítás letiltva"
+        },
+        "descr_HAVENOTTOUSEOTP": {
+        },
+        "title_WRONGPOTP": {
+                "hu": "A papír alapú jelszó hibás!"
+        },
+        "descr_WRONGPOTP": {
+                "hu": "A papír alapú egyszer használatos jelszó hibás! Próbáld újra, vagy vedd fel a kapcsolatot az adminisztátorral!"  
+        }
+}

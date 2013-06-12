@@ -1,0 +1,48 @@
+{
+	"header": {
+		"hu": "Yubikey beállítások"
+	},
+	"intro": {
+		"hu": "Itt tudod beállítani az azonosítás második faktorát, vagyis amit birtokolsz. Ez a Yubikey."
+	},
+	"status_header": {
+		"hu": "Kétfaktoros azonosítás állapota"
+	},
+	"status_text": {
+		"hu": "Ha be van kapcsolva a kétfaktoros azonosítás, akkor minden bejelentkezésnél használnod kell a YubiKey eszközt. Ez biztonságos és erős azonosítást tesz lehetővé. Az jelenlegi állapot:"
+	},
+	"enable": {
+		"hu": "Bekapcsolás!"
+	},
+	"disable": {
+		"hu": "Kikapcsolás!"
+	},
+	"yubikeys_header": {
+		"hu": "Regisztrált YubiKey eszközök"
+	},
+	"yubikeys_text": {
+		"hu": "Ezek az általad nyilvántatrásba vett YubiKey eszközök."
+	},
+	"delete_yubikey": {
+		"hu": "Törlés"
+	},
+	"register_yubikey": {
+		"hu": "Új YubiKey regisztráció"
+	},
+	"register_title": {
+		"hu": "Nyomd meg a YubiKey gombját"
+
+	},
+	"potp_header": {
+		"hu": "Papír alapú tartalék egyszer használatos jelszavak. (POTP)"
+	},
+	"potp_text": {
+		"hu": "Az alább látható egyszer használatos jelszavakat akkor kell használni, amikor nincs lehetőség a YubiKey használatára. Érdemes kinyomtatni, és egy biztonságos helyen tárolni, pl. a pénztárcában. Ha egy jelszót elhasználtunk, érdemes a papíron áthúzni."
+	},
+	"potp_generatebutton": {
+		"hu": "Új POTP-k generálása."
+	},
+	"potp_printbutton": {
+		"hu": "Nyomtatás"
+	}
+}

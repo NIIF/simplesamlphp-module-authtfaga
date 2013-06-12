@@ -1,0 +1,32 @@
+{
+	"otpfield": {
+		"en": "Verificaton code"
+	},
+	"chooseOTP": {
+		"en": "Would you like to use two-factor authentication based on Google Authenticator?"
+	},
+	"yes": {
+		"en": "Yes"
+	},
+	"no": {
+		"en": "No"
+	},
+	"next": {
+		"en": "Next"
+	},
+	"2factor_title": {
+		"en": "Set up two-factor authentication"
+	},
+	"authentication": {
+		"en": "Authentication"
+	},	
+	"qrcode": {
+		"en": "Read the QR code with Google Authenticator app, and type the verification code below"
+	},
+	"verificationcode": {
+		"en": "Type your verifying code"
+	},
+	"2factor_login": {
+		"en": "Login with verification code."
+	}	
+}

@@ -1,0 +1,16 @@
+{
+    "id"            : "ldapandyubi",
+    "name"          : "Ldap and YubiKey authentication source for MTA SZTAKI",
+    "descr"          : "Ldap and YubiKey authentication source for MTA SZTAKI",
+
+    "definition"    : "https://cvsweb.sztaki.hu/svnrepos/sztaki_modules_for_ssp/trunk/ldapandyubi/definition.json",
+    "branch"        : "prod",
+
+    "access"        : {
+        "prod"       : {
+            "type"      : "svn",
+            "version"   : "1.0",
+            "url"       : "https://cvsweb.sztaki.hu/svnrepos/sztaki_modules_for_ssp/trunk/ldapandyubi"
+        }
+    }   
+}

@@ -1,0 +1,74 @@
+<?php
+
+/**
+ * This page shows a username/password login form, and passes information from it
+ * to the sspmod_core_Auth_UserPassBase class, which is a generic class for
+ * username/password authentication.
+ *
+ * @author Olav Morken, UNINETT AS.
+ * @package simpleSAMLphp
+ * @version $Id$
+ */
+
+if (!array_key_exists('AuthState', $_REQUEST)) {
+	throw new SimpleSAML_Error_BadRequest('Missing AuthState parameter.');
+}
+$authStateId = $_REQUEST['AuthState'];
+$state = SimpleSAML_Auth_State::loadState($authStateId,'ldapandyubi.stage');
+
+if (array_key_exists('otp', $_REQUEST)) {
+	$otp = $_REQUEST['otp'];
+} else {
+	$otp = '';
+}
+if (array_key_exists('password', $_REQUEST)) {
+	$password = $_REQUEST['password'];
+} else {
+	$password = '';
+}
+
+if (array_key_exists('potp', $_REQUEST)) {
+	$potp = str_replace(" ","",$_REQUEST['potp']);
+} else {
+	$potp = '';
+}
+
+if (array_key_exists('settings', $_REQUEST)) {
+	$settings = TRUE;
+} else {
+	$settings = FALSE;
+}
+
+if (!empty($otp)) {
+	/*  attempt to log in. */
+	$errorCode = sspmod_ldapandyubi_Auth_Source_ldapandyubi::handleLogin($authStateId, $otp, $password, $settings);
+} else {
+	$errorCode = NULL;
+}
+
+if (!empty($potp)) {
+	/*  attempt to validate potp */
+	$errorCode = sspmod_ldapandyubi_Auth_Source_ldapandyubi::handlePOTP($authStateId, $potp, $settings);
+}
+
+$goToSettings = FALSE;
+if (preg_match('#ldapandyubi/settings.php#',$state['SimpleSAML_Auth_Default.Return']))
+{
+	$goToSettings = TRUE;
+}
+
+
+$template = 'ldapandyubi:login.php';
+if ($errorCode=="HAVETOUSEOTP"){
+  $template = 'ldapandyubi:potp.php';
+}
+
+$globalConfig = SimpleSAML_Configuration::getInstance();
+$t = new SimpleSAML_XHTML_Template($globalConfig, $template);
+$t->data['stateparams'] = array('AuthState' => $authStateId);
+$t->data['goToSettings'] = $goToSettings;
+$t->data['errorcode'] = $errorCode;
+$t->show();
+exit();
+
+?>

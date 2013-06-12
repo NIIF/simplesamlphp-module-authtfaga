@@ -1,0 +1,8 @@
+{
+    "title_WRONGOTP": {
+        "hu": "A megadott ellenőrzőkód hibás!"
+    },
+    "descr_WRONGOTP": {
+        "hu": "A Google Authenticator alapú egyszer használatos jelszó hibás! Próbáld újra, vagy vedd fel a kapcsolatot az adminisztátorral!"  
+    }
+}

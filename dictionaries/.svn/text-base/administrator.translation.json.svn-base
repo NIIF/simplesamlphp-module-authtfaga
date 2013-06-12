@@ -1,0 +1,8 @@
+{
+	"header": {
+		"hu": "Ldap és Yubikey azonosítás adminisztráció"
+	},
+	"intro": {
+		"hu": "Itt tudod beállítani a felhasználók kétfaktoros azonosítását."
+	}
+}

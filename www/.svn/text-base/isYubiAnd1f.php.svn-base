@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * 2 factor authentication user settings 
+ *
+ * @author Gyula Szabo, MTA SZTAKI
+ * @package simpleSAMLphp
+ * @version $Id$
+ */
+
+// Get config object
+$globalConfig = SimpleSAML_Configuration::getInstance();
+$authority = 'ldapandyubi';
+
+//$ldapandyubi = $as->getAuthSource();
+$ldapandyubi = SimpleSAML_Auth_Source::getById($authority);
+
+$uid = $ldapandyubi->getUidFromOtp($_REQUEST['otp']);
+if (! $uid )
+{
+  echo "NO";
+  exit;
+}
+echo $ldapandyubi->isEnabled2fa($uid)?"NO":"YES"; exit;
+?>

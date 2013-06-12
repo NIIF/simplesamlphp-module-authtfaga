@@ -1,0 +1,29 @@
+{
+	"otpfield": {
+		"en": "Username or YubiKey"
+	},
+	"settings": {
+		"en": "Two-factor settings"
+	},
+	"gotosettings_header": {
+		"en": "Login to Two-factor settings"
+	},
+	"gotosettings_text": {
+		"en": "You have to authenticate to your personal two-factor authentication behavior."
+	},
+	"potp": {
+		"en": "Paper based one time password"
+	},
+	"use_potp": {
+		"en": "Use Paper based one time password"
+	},
+	"potp_header": {
+		"en": "Paper based one time password"
+	},
+	"potp_text": {
+		"en": "You enabled the two factor authentication, but you dont use your yubikey. Perhaps you cant use it at the moment. Ok, get your paper and type one of your POTPs. If the authentication will be successful, strike it out."
+	},
+	"yubi1falogininprogress": {
+		"en": "One factor Yubikey login in progress"
+	}
+}

@@ -1,0 +1,33 @@
+{
+	"otpfield": {
+		"hu": "Ellenőrző kód"
+	},
+	"chooseOTP": {
+		"hu": "Szeretnéd használni a jövőben Google Authenticator-féle kétfaktoros azonosítási lehetőséget?"
+	},
+	"yes": {
+		"hu": "Igen"
+	},
+	"no": {
+		"hu": "Nem"
+	},
+	"next": {
+		"hu": "Tovább"
+	},
+	"2factor_title": {
+		"hu": "Kétfaktoros azonosítás - beállítás"
+	},
+	"authentication": {
+		"hu": "Bejelentkezés"
+	},	
+	"qrcode": {
+		"hu": "Olvasd be a QR-kódot a mobilodon lévő Google Authenticator alkalmazással, majd add meg az ellenőrző kódot alább"
+	},
+	"verificationcode": {
+		"hu": "Add meg az aktuális ellenőrző kódot"
+	},
+	"2factor_login": {
+		"en": "Bejelentkezés ellenőrző kóddal"
+	}
+
+}
