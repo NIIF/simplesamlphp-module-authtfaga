@@ -7,7 +7,7 @@
 $as = SimpleSAML_Configuration::getConfig('authsources.php')->getValue('authtfaga');
 
 // Get session object
-$session = SimpleSAML_Session::getInstance();
+$session = SimpleSAML_Session::getSession();
 
 // Get the authetication state
 $authStateId = $_REQUEST['AuthState'];
@@ -28,7 +28,7 @@ if (!$session->isValid($as['mainAuthSource'])) {
     SimpleSAML_Auth_Default::initLogin($as['mainAuthSource'], SimpleSAML_Utilities::selfURL());
 }
 
-$attributes = $session->getAttributes();
+$attributes = $session->getAuthData($as['mainAuthSource'], 'Attributes');
 $state['Attributes'] = $attributes;
 
 $uid = $attributes[ $as['uidField'] ][0];
