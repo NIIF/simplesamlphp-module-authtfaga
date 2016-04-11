@@ -249,9 +249,9 @@ class sspmod_authtfaga_Auth_Source_authtfaga extends SimpleSAML_Auth_Source
      *
      * @return string
      */
-    public function getQRCodeGoogleUrl($name, $secret)
+    public function getQRCodeGoogleUrl($name, $issuer, $secret)
     {
-        $urlencoded = urlencode('otpauth://totp/'.$name.'?secret='.$secret.'');
+        $urlencoded = urlencode('otpauth://totp/'.$name.'?secret='.$secret.'&issuer='.$issuer);
 
         return 'https://chart.googleapis.com/chart?chs=200x200&chld=M|0&cht=qr&chl='.$urlencoded.'';
     }

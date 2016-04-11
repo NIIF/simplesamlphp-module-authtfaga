@@ -12,6 +12,7 @@
            'db.username' => 'simplesaml',
            'db.password' => 'bigsecret',
            'mainAuthSource' => 'ldap',
-           'uidField' => 'uid'
+           'uidField' => 'uid',
+           'totpIssuer' => dev_aai_teszt_IdP'
          ),
 ```
