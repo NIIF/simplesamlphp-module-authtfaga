@@ -45,7 +45,8 @@ if (is_null($isEnabled) || isset($_GET['postSetEnable2fa'])) {
             $gaLogin->enable2fa($uid);
             $t->data['todo'] = 'generateGA';
             $t->data['autofocus'] = 'otp';
-            $t->data['qrcode'] = $gaLogin->getQRCodeGoogleUrl($uid.'-dev_aai_teszt_IdP', $gaKey);
+            $totpIssuer = empty($as['totpIssuer']) ? 'dev_aai_teszt_IdP' : $as['totpIssuer'];
+            $t->data['qrcode'] = $gaLogin->getQRCodeGoogleUrl($totpIssuer.':'.$uid, $totpIssuer, $gaKey);
         } elseif ($_POST['setEnable2f'] == 0) {
             $gaLogin->disable2fa($uid);
             SimpleSAML_Auth_Source::completeAuth($state);
