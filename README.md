@@ -13,6 +13,6 @@
            'db.password' => 'bigsecret',
            'mainAuthSource' => 'ldap',
            'uidField' => 'uid',
-           'totpIssuer' => dev_aai_teszt_IdP'
+           'totpIssuer' => 'dev_aai_teszt_IdP'
          ),
 ```
