@@ -29,7 +29,7 @@ $this->data['header'] = $this->t('{authtfaga:login:authentication}');
 	<h2><?php echo $this->t('{authtfaga:login:2factor_title}')?></h2>
 	<div class="loginbox">	
 		<p class="logintitle"><?php echo $this->t('{authtfaga:login:qrcode}')?></p>
-		<p><img src="<?=$this->data['qrcode'];?>" /></p>
+		<p><img src="<?php echo $this->data['qrcode'];?>" /></p>
         <p><input id="otp" class="yubifield" type="text" tabindex="1" name="otp" /></p>
         <p><input id="submit" class="submitbutton" type="submit" tabindex="2" name="submit" value="<?php echo $this->t('{authtfaga:login:next}')?>"/></p>
 	</div>
