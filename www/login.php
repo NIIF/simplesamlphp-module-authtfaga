@@ -4,7 +4,6 @@
  * @author Tamas Frank, NIIFI
  *
  */
-$as = SimpleSAML_Configuration::getConfig('authsources.php')->getValue('authtfaga');
 
 // Get session object
 $session = SimpleSAML_Session::getSession();
@@ -12,9 +11,16 @@ $session = SimpleSAML_Session::getSession();
 // Get the authetication state
 $authStateId = $_REQUEST['AuthState'];
 $state = SimpleSAML_Auth_State::loadState($authStateId, 'authtfaga.stage');
+assert('array_key_exists("SimpleSAML_Auth_Source.id", $state)');
+
+$authId = $state['SimpleSAML_Auth_Source.id'];
+$as = SimpleSAML_Configuration::getConfig('authsources.php')->getValue($authId);
 
 // Use 2 factor authentication class
-$gaLogin = SimpleSAML_Auth_Source::getById('authtfaga');
+$gaLogin = SimpleSAML_Auth_Source::getById($authId, 'sspmod_authtfaga_Auth_Source_authtfaga');
+if ($gaLogin === null) {
+    throw new Exception('Invalid authentication source: ' . $authId);
+}
 
 // Init template
 $template = 'authtfaga:login.php';
