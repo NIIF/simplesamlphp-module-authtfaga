@@ -80,7 +80,6 @@ class sspmod_authtfaga_Auth_Source_authtfaga extends SimpleSAML_Auth_Source
         try {
             $this->dbh = new PDO($this->db_dsn, $this->db_username, $this->db_password);
         } catch (PDOException $e) {
-            var_dump($this->db_dsn, $this->db_username, $this->db_password);
             echo 'Connection failed: '.$e->getMessage();
         }
         $this->createTables();
