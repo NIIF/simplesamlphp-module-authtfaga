@@ -4,7 +4,6 @@
  * @author Tamas Frank, NIIFI
  *
  */
-
 // Get session object
 $session = SimpleSAML_Session::getSession();
 
@@ -37,7 +36,7 @@ if (!$session->isValid($as['mainAuthSource'])) {
 $attributes = $session->getAuthData($as['mainAuthSource'], 'Attributes');
 $state['Attributes'] = $attributes;
 
-$uid = $attributes[ $as['uidField'] ][0];
+$uid = $attributes[$as['uidField']][0];
 $state['UserID'] = $uid;
 $isEnabled = $gaLogin->isEnabled2fa($uid);
 
@@ -52,7 +51,7 @@ if (is_null($isEnabled) || isset($_GET['postSetEnable2fa'])) {
             $t->data['todo'] = 'generateGA';
             $t->data['autofocus'] = 'otp';
             $totpIssuer = empty($as['totpIssuer']) ? 'dev_aai_teszt_IdP' : $as['totpIssuer'];
-            $t->data['qrcode'] = $gaLogin->getQRCodeGoogleUrl($totpIssuer.':'.$uid, $totpIssuer, $gaKey);
+            $t->data['qrcode'] = $gaLogin->getQRCodeGoogleUrl($totpIssuer . ':' . $uid, $totpIssuer, $gaKey);
         } elseif ($_POST['setEnable2f'] == 0) {
             $gaLogin->disable2fa($uid);
             SimpleSAML_Auth_Source::completeAuth($state);
@@ -68,6 +67,11 @@ if (is_null($isEnabled) || isset($_GET['postSetEnable2fa'])) {
 
         if ($loggedIn) {
             $state['saml:AuthnContextClassRef'] = $gaLogin->tfa_authencontextclassref;
+
+            if (isset($state['Attributes']['userCertificate;binary'])) {
+                unset($state['Attributes']['userCertificate;binary']);
+            }
+
             SimpleSAML_Auth_Source::completeAuth($state);
         } else {
             $errorCode = 'WRONGOTP';
@@ -78,6 +82,11 @@ if (is_null($isEnabled) || isset($_GET['postSetEnable2fa'])) {
         $t->data['todo'] = 'loginOTP';
     }
 } else {
+
+    if (isset($state['Attributes']['userCertificate;binary'])) {
+        unset($state['Attributes']['userCertificate;binary']);
+    }
+
     // User has set up not to use 2 factor, so he is logged in
     SimpleSAML_Auth_Source::completeAuth($state);
 }
