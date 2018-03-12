@@ -94,7 +94,7 @@ class sspmod_authtfaga_Auth_Source_authtfaga extends SimpleSAML_Auth_Source
 
         $id = SimpleSAML_Auth_State::saveState($state, self::STAGEID);
 
-        $url = SimpleSAML_Module::getModuleURL('authtfaga/login.php');
+        $url = SimpleSAML\Module::getModuleURL('authtfaga/login.php');
         SimpleSAML_Utilities::redirect($url, array('AuthState' => $id));
     }
 
