@@ -9,28 +9,37 @@ $session = SimpleSAML_Session::getSession();
 
 // Get the authetication state
 $authStateId = $_REQUEST['AuthState'];
+/** @noinspection PhpUnhandledExceptionInspection */
 $state = SimpleSAML_Auth_State::loadState($authStateId, 'authtfaga.stage');
 assert('array_key_exists("SimpleSAML_Auth_Source.id", $state)');
 
 $authId = $state['SimpleSAML_Auth_Source.id'];
+/** @noinspection PhpUnhandledExceptionInspection */
 $as = SimpleSAML_Configuration::getConfig('authsources.php')->getValue($authId);
 
 // Use 2 factor authentication class
+/** @noinspection PhpUnhandledExceptionInspection */
+/** @var sspmod_authtfaga_Auth_Source_authtfaga $gaLogin */
 $gaLogin = SimpleSAML_Auth_Source::getById($authId, 'sspmod_authtfaga_Auth_Source_authtfaga');
 if ($gaLogin === null) {
-    throw new Exception('Invalid authentication source: ' . $authId);
+	/** @noinspection PhpUnhandledExceptionInspection */
+	throw new Exception('Invalid authentication source: ' . $authId);
 }
 
 // Init template
 $template = 'authtfaga:login.php';
+/** @noinspection PhpUnhandledExceptionInspection */
 $globalConfig = SimpleSAML_Configuration::getInstance();
+/** @noinspection PhpParamsInspection */
 $t = new SimpleSAML_XHTML_Template($globalConfig, $template);
 
 $errorCode = null;
 
 //If user doesn't have session, force to use the main authentication method
 if (!$session->isValid($as['mainAuthSource'])) {
-    SimpleSAML_Auth_Default::initLogin($as['mainAuthSource'], SimpleSAML_Utilities::selfURL());
+	/** @noinspection PhpUnhandledExceptionInspection */
+	$mainLogin = SimpleSAML_Auth_Source::getById($as['mainAuthSource']);
+	$mainLogin->initLogin(SimpleSAML\Utils\HTTP::getSelfURL());
 }
 
 $attributes = $session->getAuthData($as['mainAuthSource'], 'Attributes');
