@@ -49,6 +49,8 @@ $uid = $attributes[$as['uidField']][0];
 $state['UserID'] = $uid;
 $isEnabled = $gaLogin->isEnabled2fa($uid);
 
+var_dump($isEnabled);
+
 if (is_null($isEnabled) || isset($_GET['postSetEnable2fa'])) {
     //If the user has not set his preference of 2 factor authentication, redirect to settings page
     if (isset($_POST['setEnable2f'])) {
