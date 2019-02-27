@@ -108,7 +108,7 @@ class sspmod_authtfaga_Auth_Source_authtfaga extends SimpleSAML_Auth_Source
         $this->dbh->query($q);
         $q = 'CREATE TABLE IF NOT EXISTS sspga_status (
 		          uid VARCHAR(60),
-		          enable BOOL,
+		          enable INT,
 		          PRIMARY KEY(uid)
 		         );';
         $this->dbh->query($q);
