@@ -1,5 +1,5 @@
 {
-    "name": "uhi67/simplesamlphp-module-authtfaga",
+    "name": "niif/simplesamlphp-module-authtfaga",
     "description": "Two-factor authentication module for simpleSAMLphp using Google Authenticator",
     "type": "simplesamlphp-module",
     "require": {
