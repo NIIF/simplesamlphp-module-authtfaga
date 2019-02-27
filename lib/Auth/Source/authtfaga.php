@@ -116,7 +116,7 @@ class sspmod_authtfaga_Auth_Source_authtfaga extends SimpleSAML_Auth_Source
 
     public function enable2fa($uid)
     {
-        $q = "REPLACE INTO sspga_status SET enable=1, uid='$uid'";
+        $q = "REPLACE INTO sspga_status (enable, uid) VALUES (1, '$uid')";
         $result = $this->dbh->query($q);
         if($result===false) throw new Exception('Enable TFA failed '.$q);
         SimpleSAML_Logger::info('authtfaga: '.$uid.' turns ON the two-factor authentication.');
@@ -126,7 +126,7 @@ class sspmod_authtfaga_Auth_Source_authtfaga extends SimpleSAML_Auth_Source
 
     public function disable2fa($uid)
     {
-        $q = "REPLACE INTO sspga_status SET enable=0,uid='$uid'";
+        $q = "REPLACE INTO sspga_status (enable, uid) VALUES (0, '$uid')";
         $this->dbh->query($q);
         SimpleSAML_Logger::info('authtfaga: '.$uid.' turns OFF the two-factor authentication.');
 
