@@ -11,13 +11,14 @@ $session = SimpleSAML_Session::getSession();
 $authStateId = $_REQUEST['AuthState'];
 /** @noinspection PhpUnhandledExceptionInspection */
 $state = SimpleSAML_Auth_State::loadState($authStateId, 'authtfaga.stage');
-assert('array_key_exists("SimpleSAML_Auth_Source.id", $state)');
 
-$authId = $state['SimpleSAML_Auth_Source.id'];
+if(array_key_exists("SimpleSAML_Auth_Source.id", $state)) $authId = $state['SimpleSAML_Auth_Source.id'];
+else $authId = $state['\SimpleSAML\Auth\Source.id'];
+
 /** @noinspection PhpUnhandledExceptionInspection */
 $as = SimpleSAML_Configuration::getConfig('authsources.php')->getValue($authId);
 
-// Use 2 factor authentication class
+// Use 2 factor authentication classvar_dump($authId);
 /** @noinspection PhpUnhandledExceptionInspection */
 /** @var sspmod_authtfaga_Auth_Source_authtfaga $gaLogin */
 $gaLogin = SimpleSAML_Auth_Source::getById($authId, 'sspmod_authtfaga_Auth_Source_authtfaga');
