@@ -94,30 +94,31 @@ class sspmod_authtfaga_Auth_Source_authtfaga extends SimpleSAML_Auth_Source
 
         $id = SimpleSAML_Auth_State::saveState($state, self::STAGEID);
 
-        $url = SimpleSAML\Module::getModuleURL('authtfaga/login.php');
-        SimpleSAML_Utilities::redirect($url, array('AuthState' => $id));
+        $url = SimpleSAML_Module::getModuleURL('authtfaga/login.php');
+		SimpleSAML\Utils\HTTP::redirectTrustedURL($url, array('AuthState' => $id));
     }
 
     private function createTables()
     {
         $q = 'CREATE TABLE IF NOT EXISTS sspga_gakeys (
 		          gakey VARCHAR (20),
-		          PRIMARY KEY(gakey),
-		          uid VARCHAR(60)
+		          uid VARCHAR(60),
+		          PRIMARY KEY(gakey)
 		         );';
-        $result = $this->dbh->query($q);
+        $this->dbh->query($q);
         $q = 'CREATE TABLE IF NOT EXISTS sspga_status (
 		          uid VARCHAR(60),
-		          PRIMARY KEY(uid),
-		          enable BOOL
+		          enable INT,
+		          PRIMARY KEY(uid)
 		         );';
-        $result = $this->dbh->query($q);
+        $this->dbh->query($q);
     }
 
     public function enable2fa($uid)
     {
-        $q = "REPLACE INTO sspga_status SET enable=1, uid='$uid'";
+        $q = "REPLACE INTO sspga_status (enable, uid) VALUES (1, '$uid')";
         $result = $this->dbh->query($q);
+        if($result===false) throw new Exception('Enable TFA failed '.$q);
         SimpleSAML_Logger::info('authtfaga: '.$uid.' turns ON the two-factor authentication.');
 
         return true;
@@ -125,8 +126,8 @@ class sspmod_authtfaga_Auth_Source_authtfaga extends SimpleSAML_Auth_Source
 
     public function disable2fa($uid)
     {
-        $q = "REPLACE INTO sspga_status SET enable=0,uid='$uid'";
-        $result = $this->dbh->query($q);
+        $q = "REPLACE INTO sspga_status (enable, uid) VALUES (0, '$uid')";
+        $this->dbh->query($q);
         SimpleSAML_Logger::info('authtfaga: '.$uid.' turns OFF the two-factor authentication.');
 
         return true;
@@ -149,7 +150,7 @@ class sspmod_authtfaga_Auth_Source_authtfaga extends SimpleSAML_Auth_Source
         }
 
         $q = 'REPLACE INTO sspga_gakeys (uid,gakey) VALUES ("'.$uid.'","'.$ga_id.'");';
-        $result = $this->dbh->query($q);
+        $this->dbh->query($q);
         SimpleSAML_Logger::info('authtfaga: '.$uid.' register his gakey: '.$ga_id);
 
         return true;
@@ -158,7 +159,7 @@ class sspmod_authtfaga_Auth_Source_authtfaga extends SimpleSAML_Auth_Source
     public function deletegakey($uid, $ga_id)
     {
         $q = 'DELETE FROM sspga_gakeys WHERE uid="'.$uid.'" AND gakey="'.$ga_id.'";';
-        $result = $this->dbh->query($q);
+        $this->dbh->query($q);
         SimpleSAML_Logger::info('authtfaga: '.$uid.' delete his gakey: '.$ga_id);
 
         return true;
@@ -240,14 +241,15 @@ class sspmod_authtfaga_Auth_Source_authtfaga extends SimpleSAML_Auth_Source
         return str_pad($value % $modulo, $this->_codeLength, '0', STR_PAD_LEFT);
     }
 
-    /**
-     * Get QR-Code URL for image, from google charts.
-     *
-     * @param string $name
-     * @param string $secret
-     *
-     * @return string
-     */
+	/**
+	 * Get QR-Code URL for image, from google charts.
+	 *
+	 * @param string $name
+	 * @param string $issuer
+	 * @param string $secret
+	 *
+	 * @return string
+	 */
     public function getQRCodeGoogleUrl($name, $issuer, $secret)
     {
         $urlencoded = rawurlencode('otpauth://totp/'.$name.'?secret='.$secret.'&issuer='.$issuer);
@@ -283,7 +285,7 @@ class sspmod_authtfaga_Auth_Source_authtfaga extends SimpleSAML_Auth_Source
      *
      * @param int $length
      *
-     * @return PHPGangsta_GoogleAuthenticator
+     * @return sspmod_authtfaga_Auth_Source_authtfaga
      */
     public function setCodeLength($length)
     {
