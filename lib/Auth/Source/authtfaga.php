@@ -116,7 +116,11 @@ class sspmod_authtfaga_Auth_Source_authtfaga extends SimpleSAML_Auth_Source
 
     public function enable2fa($uid)
     {
-        $q = "REPLACE INTO sspga_status (enable, uid) VALUES (1, '$uid')";
+        if ($this->dbh->getAttribute(PDO::ATTR_DRIVER_NAME) == 'pgsql') {
+            $q = "INSERT INTO sspga_status (uid, enable) values ('$uid', true) ON CONFLICT (uid) DO UPDATE SET enable=EXCLUDED.enable";
+        } else {
+            $q = "REPLACE INTO sspga_status (enable, uid) VALUES (1, '$uid')";
+        }
         $result = $this->dbh->query($q);
         if($result===false) throw new Exception('Enable TFA failed '.$q);
         SimpleSAML_Logger::info('authtfaga: '.$uid.' turns ON the two-factor authentication.');
@@ -126,7 +130,11 @@ class sspmod_authtfaga_Auth_Source_authtfaga extends SimpleSAML_Auth_Source
 
     public function disable2fa($uid)
     {
-        $q = "REPLACE INTO sspga_status (enable, uid) VALUES (0, '$uid')";
+        if ($this->dbh->getAttribute(PDO::ATTR_DRIVER_NAME) == 'pgsql') {
+            $q = "INSERT INTO sspga_status (uid, enable) values ('$uid', false) ON CONFLICT (ui) DO UPDATE SET enable=EXCLUDED.enable";
+        } else {
+            $q = "REPLACE INTO sspga_status (enable, uid) VALUES (0, '$uid')";
+        }
         $this->dbh->query($q);
         SimpleSAML_Logger::info('authtfaga: '.$uid.' turns OFF the two-factor authentication.');
 
@@ -149,7 +157,11 @@ class sspmod_authtfaga_Auth_Source_authtfaga extends SimpleSAML_Auth_Source
             return false;
         }
 
-        $q = 'REPLACE INTO sspga_gakeys (uid,gakey) VALUES ("'.$uid.'","'.$ga_id.'");';
+        if ($this->dbh->getAttribute(PDO::ATTR_DRIVER_NAME) == 'pgsql') {
+            $q = "INSERT INTO sspga_gakeys (uid, gakey) values ('$uid', '$ga_id') ON CONFLICT (gakey) DO UPDATE SET uid=EXCLUDED.uid";
+        } else {
+            $q = 'REPLACE INTO sspga_gakeys (uid,gakey) VALUES ("'.$uid.'","'.$ga_id.'");';
+        }
         $this->dbh->query($q);
         SimpleSAML_Logger::info('authtfaga: '.$uid.' register his gakey: '.$ga_id);
 
@@ -158,7 +170,11 @@ class sspmod_authtfaga_Auth_Source_authtfaga extends SimpleSAML_Auth_Source
 
     public function deletegakey($uid, $ga_id)
     {
-        $q = 'DELETE FROM sspga_gakeys WHERE uid="'.$uid.'" AND gakey="'.$ga_id.'";';
+        if ($this->dbh->getAttribute(PDO::ATTR_DRIVER_NAME) == 'pgsql') {
+            $q = "DELETE FROM sspga_gakeys WHERE uid='$uid' AND gakey='$ga_id'";
+        } else {
+            $q = 'DELETE FROM sspga_gakeys WHERE uid="'.$uid.'" AND gakey="'.$ga_id.'";';
+        }
         $this->dbh->query($q);
         SimpleSAML_Logger::info('authtfaga: '.$uid.' delete his gakey: '.$ga_id);
 
