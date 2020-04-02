@@ -19,9 +19,9 @@ $this->data['header'] = $this->t('{authtfaga:login:authentication}');
 	<div class="loginbox">
 		<p class="logintitle"><?php echo $this->t('{authtfaga:login:chooseOTP}')?></p>
         <p>
-        	<input type="radio" name="setEnable2f" value="1" /> <?php echo $this->t('{authtfaga:login:yes}')?>
+		<input type="radio" name="setEnable2f" value="1" checked /> <?php echo $this->t('{authtfaga:login:yes}')?>
         	<input type="radio" name="setEnable2f" value="0" /> <?php echo $this->t('{authtfaga:login:no}')?>
-        	<input class="submitbutton" type="submit" tabindex="2" name="submit" value="<?php echo $this->t('{authtfaga:login:next}')?>" />
+		<input class="submitbutton" type="submit" tabindex="2" name="submit" autofocus value="<?php echo $this->t('{authtfaga:login:next}')?>" />
         </p>
 	</div>
 
@@ -39,7 +39,7 @@ $this->data['header'] = $this->t('{authtfaga:login:authentication}');
 	<div class="loginbox">
 		<p class="logintitle">
 			<?php echo $this->t('{authtfaga:login:verificationcode}')?> 
-			<input id="otp" class="yubifield" type="text" tabindex="1" name="otp" />
+			<input id="otp" class="yubifield" type="text" tabindex="1" name="otp" autofocus />
 			<input id="submit" class="submitbutton" type="submit" tabindex="2" name="submit" value="<?php echo $this->t('{authtfaga:login:next}')?>"/>
 		</p>
 	</div>
